@@ -1,0 +1,3 @@
+[submodule "submodules/YSUtility"]
+	path = submodules/YSUtility
+	url = ../YSUtility.git
