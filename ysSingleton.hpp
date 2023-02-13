@@ -10,15 +10,15 @@ namespace YS::DesignPattern::Creational
     class Singleton : public PassKey<Singleton<T>>
     {
     private:
-        Singleton() { std::cout << "Singleton()\n"; }
+        Singleton() = default;
     protected:
         Singleton(Singleton const &) = delete;
         Singleton(Singleton &&) = delete;
-        ~Singleton() { std::cout << "~Singleton()\n"; }
+        virtual ~Singleton() = default;
         Singleton& operator=(Singleton const &) = delete;
         Singleton& operator=(Singleton &&) = delete;
 
-        Singleton(PassKey<Singleton>) { std::cout << "Singleton(PassKey<Singleton>)\n"; }
+        Singleton(PassKey<Singleton>) {}
 
     public:
         static std::shared_ptr<T> GetInstance()
