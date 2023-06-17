@@ -8,12 +8,19 @@ namespace YS::DesignPattern::Creational
 {
     namespace
     {
+        /**
+         * @brief Set 가변타입변수에 Elemet가 존재하닌지에 대한 concept
+         * 
+         * @tparam Element 찾고자 하는 Type
+         * @tparam Set Elemet에 대해 비교할 집합
+         */
         template<typename Element, typename... Set>
         concept HasElement = (std::same_as<Element, Set> || ...);
 
         template<typename Factory, typename Product>
         concept ImplementCreateFunc = requires
         {
+            // Factory::Create<Product>()
             {Factory::template Create<Product>()};
         };
 

@@ -1,14 +1,13 @@
-﻿if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
-    message(FATAL_ERROR YSDesignPattern must be subdirectory)
-endif ()
+﻿cmake_minimum_required(VERSION 3.25)
+
+project(YSDesignPattern
+    LANGUAGES CXX)
+
+execute_process(COMMAND ${CMAKE_COMMAND} -S ${CMAKE_CURRENT_SOURCE_DIR}/submodules/YSUtility -B ${CMAKE_CURRENT_BINARY_DIR}/YSUtility -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX})
+execute_process(COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/YSUtility --target install)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_subdirectory(submodules/YSUtility)
-
-target_include_directories(${target_name} PUBLIC inc/)
-target_compile_features(${target_name} PUBLIC cxx_std_20)
-
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/inc
-        DESTINATION ${CMAKE_SOURCE_DIR}/inc/)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/inc/
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/inc/YSDesignPattern)
